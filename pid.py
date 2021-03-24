@@ -4,7 +4,7 @@ class PID:
     _kp = _ki = _kd = _integrator = _imax = 0
     _last_error = _last_derivative = _last_t = 0
     _RC = 1/(2 * pi * 20)
-    def __init__(self, p=0, i=0, d=0, imax=0):
+    def __init__(self, p=0.4,i=0.08, d=0.1, imax=5):
         self._kp = float(p)
         self._ki = float(i)
         self._kd = float(d)
