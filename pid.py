@@ -4,7 +4,8 @@ class PID:
     _kp = _ki = _kd = _integrator = _imax = 0
     _last_error = _last_derivative = _last_t = 0
     _RC = 1/(2 * pi * 20)
-    def __init__(self, p=0.4,i=0.08, d=0.1, imax=5):
+    # def __init__(self, p=0, i=0, d=0, imax=0):
+    def __init__(self, p=0.4,i=0.08, d=0.1, imax=20):
         self._kp = float(p)
         self._ki = float(i)
         self._kd = float(d)
@@ -12,9 +13,9 @@ class PID:
         self._last_derivative = float('nan')
     def reset_I(self):
         self._integrator = 0
-        self._last_derivative = float('nan')
+        self._last_derivative = float('nan')  
     def get_pid(self, error, scaler):
-        tnow = millis()
+        tnow = time.time()
         dt = tnow - self._last_t
         output = 0
         if self._last_t == 0 or dt > 1000:
@@ -41,4 +42,4 @@ class PID:
             if self._integrator < -self._imax: self._integrator = -self._imax
             elif self._integrator > self._imax: self._integrator = self._imax
             output += self._integrator
-        return output
+        return output  

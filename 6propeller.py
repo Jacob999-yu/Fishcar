@@ -2,7 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
-from threading import Thread
+from threading import Thread 
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
